@@ -10,16 +10,18 @@ class ReactionPost extends Model
     use HasFactory;
 
     protected $fillable = [
-       'id_reaction_type',
-           'id_post',
-           'status',
+        'id_reaction_type',
+        'id_post',
+        'status',
     ];
 
-    public function reaction_types(){
+    public function reaction_types()
+    {
         return $this->belongsTo(ReactionType::class, 'id_reaction_type');
     }
 
-    public function posts(){
+    public function posts()
+    {
         return $this->belongsTo(Post::class, 'id_post');
     }
 }

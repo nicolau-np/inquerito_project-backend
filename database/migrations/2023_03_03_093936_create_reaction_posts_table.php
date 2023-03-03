@@ -22,7 +22,7 @@ class CreateReactionPostsTable extends Migration
             $table->timestamps();
         });
 
-        Schema::table('reaction_post', function (Blueprint $table) {
+        Schema::table('reaction_posts', function (Blueprint $table) {
             $table->foreign('id_reaction_type')->references('id')->on('reaction_types')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('id_post')->references('id')->on('posts')->onUpdate('cascade')->onDelete('cascade');
         });
