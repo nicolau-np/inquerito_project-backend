@@ -37,7 +37,7 @@ class ReactionController extends Controller
         ]);
 
         $reaction_comment = ReactionComment::create($request->all());
-        return ReactionCommentResource::collection($reaction_comment);
+        return new ReactionCommentResource($reaction_comment);
     }
 
     public function types()
