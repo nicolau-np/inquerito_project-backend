@@ -17,7 +17,7 @@ class CreateReactionTypesTable extends Migration
             $table->engine = 'InnoDB';
             $table->bigIncrements('id');
             $table->string('type');
-            $table->text('image');
+            $table->text('image')->nullable();
             $table->string('status')->default('on');
             $table->timestamps();
         });
