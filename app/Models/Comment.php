@@ -9,6 +9,8 @@ class Comment extends Model
 {
     use HasFactory;
 
+    protected $table = 'comments';
+
     protected $fillable = [
         'id_post',
         'nome',
@@ -17,11 +19,13 @@ class Comment extends Model
         'status',
     ];
 
-    public function posts(){
+    public function posts()
+    {
         return $this->belongsTo(Post::class, 'id_post');
     }
 
-    public function replies(){
+    public function replies()
+    {
         return $this->hasMany(Reply::class, 'id_comment');
     }
 }

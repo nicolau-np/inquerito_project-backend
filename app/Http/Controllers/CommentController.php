@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\CommentResource;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
@@ -24,7 +26,16 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,  [
+            'id_post' => 'required|integer|exists:posts,id',
+            'comment' => 'required|string',
+        ], [], [
+            'id_post' => 'Publicação',
+            'comment' => 'Comentário',
+        ]);
+
+        $comment = Comment::create($request->all());
+        return new CommentResource($comment);
     }
 
     /**

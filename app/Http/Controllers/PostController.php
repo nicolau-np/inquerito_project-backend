@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\CommentResource;
 use App\Http\Resources\PostResource;
+use App\Models\Comment;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
@@ -17,6 +19,12 @@ class PostController extends Controller
     {
         $posts = Post::all();
         return PostResource::collection($posts);
+    }
+
+    public function comments($id)
+    {
+        $comments = Comment::where('id_post', $id)->orderBy('id', 'desc')->get();
+        return CommentResource::collection($comments);
     }
 
     /**
@@ -63,5 +71,5 @@ class PostController extends Controller
     {
         //
 
-   }
+    }
 }

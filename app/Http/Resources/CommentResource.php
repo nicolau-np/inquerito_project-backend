@@ -21,6 +21,7 @@ class CommentResource extends JsonResource
             'ano_formacao'=>$this->ano_formacao,
             'comment'=>$this->comment,
             'status'=>$this->status,
+            'created_at'=>date('d-m-Y H:i:s',strtotime($this->created_at)),
         ];
     }
 }
