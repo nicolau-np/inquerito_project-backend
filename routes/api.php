@@ -39,7 +39,7 @@ Route::prefix('replies')->group(function () {
 
 Route::prefix('reactions')->group(function () {
     Route::post('/', [ReactionController::class, 'store']);
-    Route::get('/types', [ReactionController::class, 'types']);
+    Route::get('types', [ReactionController::class, 'types']);
 });
 
 Route::prefix('excel')->group(function () {
