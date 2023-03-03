@@ -23,7 +23,7 @@ class CreateRepliesTable extends Migration
         });
 
         Schema::table('replies', function (Blueprint $table) {
-            $table->foreign('id_comment')->references('id')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('id_comment')->references('id')->on('comments')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
