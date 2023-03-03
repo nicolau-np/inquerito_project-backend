@@ -24,14 +24,17 @@
                 </tr>
             </thead>
             <tbody>
+                @foreach($comments as $comment)
                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>{{$comment->id}}</td>
+                    <td>{{'Anonimous'}}</td>
+                    <td>{{$comment->comment}}</td>
+                    <td>{{date('Y-m-d', strtotime($comment->created_at))}}T{{date('H:i:s',
+                        strtotime($comment->created_at))}}Z</td>
+                    <td>0</td>
+                    <td>0</td>
                 </tr>
+                @endforeach
             </tbody>
         </table>
     </body>

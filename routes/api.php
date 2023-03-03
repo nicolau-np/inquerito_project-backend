@@ -32,5 +32,5 @@ Route::prefix('comments')->group(function () {
 });
 
 Route::prefix('excel')->group(function () {
-    Route::get('/comments', [ExcelController::class, 'comments']);
+    Route::get('comments', [ExcelController::class, 'comments']);
 });
