@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\CommentResource;
-use App\Models\Comment;
 use Illuminate\Http\Request;
-use App\Models\Reply;
-use App\Http\Resources\ReplyCommentResource;
+use App\Models\ReactionComment;
+use App\Models\ReactionType;
+use App\Http\Resources\ReactionCommentResource;
+use App\Http\Resources\ReactionTypeResource;
 
-class CommentController extends Controller
+class ReactionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -28,22 +28,22 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,  [
-            'id_post' => 'required|integer|exists:posts,id',
-            'comment' => 'required|string',
+        $this->validate($request, [
+            'id_reaction_type' => 'required|integer|exists:reaction_types,id',
+            'id_comment' => 'required|integer|exists:comments,id',
         ], [], [
-            'id_post' => 'Publicação',
-            'comment' => 'Comentário',
+            'id_reaction_type' => 'Reaçao',
+            'id_comment' => 'Comentário',
         ]);
 
-        $comment = Comment::create($request->all());
-        return new CommentResource($comment);
+        $reaction_comment = ReactionComment::create($request->all());
+        return ReactionCommentResource::collection($reaction_comment);
     }
 
-    public function replies($id)
+    public function types()
     {
-        $replies = Reply::where('id_comment', $id)->orderBy('id', 'desc')->get();
-        return ReplyCommentResource::collection($replies);
+        $types = ReactionType::all();
+        return ReactionTypeResource::collection($types);
     }
 
     /**

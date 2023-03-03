@@ -3,7 +3,8 @@
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ExcelController;
 use App\Http\Controllers\PostController;
-use App\Models\Comment;
+use App\Http\Controllers\ReplyController;
+use App\Http\Controllers\ReactionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -29,6 +30,16 @@ Route::prefix('posts')->group(function () {
 
 Route::prefix('comments')->group(function () {
     Route::post('/', [CommentController::class, 'store']);
+    Route::get('{id}/replies', [CommentController::class, 'replies']);
+});
+
+Route::prefix('replies')->group(function () {
+    Route::post('/', [ReplyController::class, 'store']);
+});
+
+Route::prefix('reactions')->group(function () {
+    Route::post('/', [ReactionController::class, 'store']);
+    Route::get('/types', [ReactionController::class, 'types']);
 });
 
 Route::prefix('excel')->group(function () {

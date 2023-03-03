@@ -31,8 +31,8 @@
                     <td>{{$comment->comment}}</td>
                     <td>{{date('Y-m-d', strtotime($comment->created_at))}}T{{date('H:i:s',
                         strtotime($comment->created_at))}}Z</td>
-                    <td>0</td>
-                    <td>0</td>
+                    <td>{{$comment->reaction_comments->count()}}</td>
+                    <td>{{$comment->replies->count()}}</td>
                 </tr>
                 @endforeach
             </tbody>

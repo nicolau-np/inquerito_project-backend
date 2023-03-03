@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\CommentResource;
-use App\Models\Comment;
 use Illuminate\Http\Request;
 use App\Models\Reply;
 use App\Http\Resources\ReplyCommentResource;
 
-class CommentController extends Controller
+class ReplyController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -28,22 +26,16 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,  [
-            'id_post' => 'required|integer|exists:posts,id',
-            'comment' => 'required|string',
+        $this->validate($request, [
+            'id_comment' => 'required|integer|exists:comments,id',
+            'reply' => 'required|string',
         ], [], [
-            'id_post' => 'Publicação',
-            'comment' => 'Comentário',
+            'id_comment' => 'Comentário',
+            'reply' => 'Resposta',
         ]);
 
-        $comment = Comment::create($request->all());
-        return new CommentResource($comment);
-    }
-
-    public function replies($id)
-    {
-        $replies = Reply::where('id_comment', $id)->orderBy('id', 'desc')->get();
-        return ReplyCommentResource::collection($replies);
+        $reply = Reply::create($request->all());
+        return new ReplyCommentResource($reply);
     }
 
     /**
