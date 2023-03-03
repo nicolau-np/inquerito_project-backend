@@ -28,4 +28,8 @@ class Comment extends Model
     {
         return $this->hasMany(Reply::class, 'id_comment');
     }
+
+    public function reaction_comments(){
+        return $this->hasMany(ReactionComment::class, 'id_comment');
+    }
 }
