@@ -20,7 +20,6 @@ class CommentResource extends JsonResource
             'nome' => $this->nome,
             'ano_formacao' => $this->ano_formacao,
             'comment' => $this->comment,
-            
             'reaction_count' => $this->reaction_comments->count(),
             'replies_count' => $this->replies->count(),
             'status' => $this->status,

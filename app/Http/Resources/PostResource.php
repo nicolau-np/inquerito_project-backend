@@ -18,7 +18,7 @@ class PostResource extends JsonResource
             'id' => $this->id,
             'user' => new UserResource($this->users),
             'post' => $this->post,
-            'comment_total'=>$this->comments->count(),
+            'comment_total' => $this->comments->count(),
             'status' => $this->status,
         ];
     }

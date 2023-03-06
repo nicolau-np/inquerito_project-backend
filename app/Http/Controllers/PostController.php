@@ -23,7 +23,7 @@ class PostController extends Controller
 
     public function comments($id)
     {
-        $comments = Comment::where('id_post', $id)->orderBy('id', 'desc')->get();
+        $comments = Comment::where('id_post', $id)->orderBy('id', 'desc')->paginate(50);
         return CommentResource::collection($comments);
     }
 
